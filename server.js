@@ -11,11 +11,9 @@ app.use(cors());
 const connection = process.env.MONGODB_SRV;
 mongoose.connect(connection, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => console.log("Database connected successfully.")).catch(err => console.log(err));
 
-const helloRouter = require('./hello')
 const stripeRouter = require('./stripe')
 const orderRouter = require('./routes/order-route')
 
-app.use('/hello', helloRouter)
 app.use('/stripe', stripeRouter)
 app.use('/orders', orderRouter)
 
