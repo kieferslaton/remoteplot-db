@@ -20,6 +20,7 @@ router.route("/update/:id").post((req, res) => {
     .then((user) => {
       user.username = req.body.username;
       user.password = req.body.password;
+      user.admin = req.body.admin;
 
       user
         .save()
@@ -30,7 +31,7 @@ router.route("/update/:id").post((req, res) => {
 });
 
 router.route("/signup").post(async (req, res) => {
-  const { username, password, password2 } = req.body;
+  const { username, password, password2, admin } = req.body;
 
   let user = await User.findOne({ username });
   if (user) {
@@ -42,7 +43,8 @@ router.route("/signup").post(async (req, res) => {
 
   const newUser = new User({
     username,
-    password: await bcrypt.hash(password, 10)
+    password: await bcrypt.hash(password, 10), 
+    admin
   });
   newUser
     .save()
