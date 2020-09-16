@@ -12,8 +12,10 @@ const connection = process.env.MONGODB_SRV;
 mongoose.connect(connection, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => console.log("Database connected successfully.")).catch(err => console.log(err));
 
 const stripeRouter = require('./stripe')
+const userRouter = require('./routes/user-route')
 const orderRouter = require('./routes/order-route')
 
+app.use('/users', userRouter)
 app.use('/stripe', stripeRouter)
 app.use('/orders', orderRouter)
 
