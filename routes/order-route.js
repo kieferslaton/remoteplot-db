@@ -33,8 +33,11 @@ router.route('/new').post((req, res) => {
             postal_code: req.body.billingDetails.address.postal_code
         }
     }
+    const subtotal = req.body.subtotal
+    const shipTotal = req.body.shipTotal
+    const total = req.body.total
 
-    const newOrder = new Order({orderNumber, ship, billingDetails})
+    const newOrder = new Order({orderNumber, ship, billingDetails, subtotal, shipTotal, total})
 
     newOrder.save().then(() => res.json(newOrder)).catch(err => res.status(400).json(err))
 })

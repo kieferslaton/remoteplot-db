@@ -13,8 +13,10 @@ const OrderSchema = new mongoose.Schema({
             state: String, 
             postal_code: String
         }
-    }
-
+    }, 
+    subtotal: Number, 
+    shipTotal: Number,
+    total: Number,
 })
 
 const Order = mongoose.model('Order', OrderSchema)
